@@ -1,10 +1,12 @@
-﻿using CarRentalManagement4.Server.Models;
+﻿using CarRentalManagement4.Server.Configurations.Entities;
+using CarRentalManagement4.Server.Models;
 using CarRentalManagement4.Shared.Domain;
 using IdentityServer4.EntityFramework.Options;
 using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -24,5 +26,14 @@ namespace CarRentalManagement4.Server.Data
         public DbSet<Model> Models { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Booking> Bookings { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+
+            builder.ApplyConfiguration(new ColourSeedConfiguration());
+            builder.ApplyConfiguration(new MakeSeedConfiguration());
+            builder.ApplyConfiguration(new ModelSeedConfiguration());
+        }
     }
 }
