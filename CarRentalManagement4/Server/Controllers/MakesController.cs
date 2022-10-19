@@ -12,7 +12,7 @@ using CarRentalManagement4.Server.Repository;
 
 namespace CarRentalManagement4.Server.Controllers
 {
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class MakesController : ControllerBase
     {
@@ -54,7 +54,7 @@ namespace CarRentalManagement4.Server.Controllers
         // PUT: /Makes/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutMake(int id, Make make, IUnitOfWork _unitOfWork)
+        public async Task<IActionResult> PutMake(int id, Make make)
         {
             if (id != make.Id)
             {

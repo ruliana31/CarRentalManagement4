@@ -12,7 +12,7 @@ using CarRentalManagement4.Server.Repository;
 
 namespace CarRentalManagement4.Server.Controllers
 {
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class BookingsController : ControllerBase
     {

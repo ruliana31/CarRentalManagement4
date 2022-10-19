@@ -54,7 +54,7 @@ namespace CarRentalManagement4.Server.Controllers
         // PUT: /Vehicles/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutVehicle(int id, Vehicle Vehicle, IUnitOfWork _unitOfWork)
+        public async Task<IActionResult> PutVehicle(int id, Vehicle Vehicle)
         {
             if (id != Vehicle.Id)
             {

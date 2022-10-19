@@ -49,7 +49,7 @@ namespace CarRentalManagement4.Server.Repository
         }
 
         public async Task<IList<T>> GetAll(Expression<Func<T, bool>> expression = null,
-            Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, 
+            Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
             List<string> includes = null)
         {
             IQueryable<T> query = _db;
