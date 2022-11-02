@@ -12,6 +12,7 @@ using CarRentalManagement4.Server.Repository;
 
 namespace CarRentalManagement4.Server.Controllers
 {
+    ////[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class MakesController : ControllerBase

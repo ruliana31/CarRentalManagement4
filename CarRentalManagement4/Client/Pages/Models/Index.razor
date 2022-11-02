@@ -1,14 +1,14 @@
-﻿@page "/colours/"
+﻿@page "/models/"
 @inject HttpClient _client
 @inject IJSRuntime js
 @attribute [Authorize]
-<h3 class="card-title">Colours </h3>>
+<h3 class="card-title">Car Models</h3>>
 <hr />
 <br />
 
-@if (Colours == null)
+@if (Models == null)
 {
-    <div class="alert alert-info">Loading Colours...</div>
+    <div class="alert alert-info">Loading Models...</div>
 }
 else
 {
@@ -20,18 +20,18 @@ else
             </tr>
         </thead>
         <tbody>
-            @foreach (var colour in Colours)
+            @foreach (var model in Models)
             {
                 <tr>
-                    <td>@colour.Name</td>
+                    <td>@model.Name</td>
                     <td>
-                        <a href="/colours/view/@colour.Id" class="btn btn-primary">
+                        <a href="/model/view/@model.Id" class="btn btn-primary">
                             <span class="oi oi-book"></span>
                         </a>
-                        <a href="/colours/edit/@colour.Id" class="btn btn-warning">
+                        <a href="/model/edit/@model.Id" class="btn btn-warning">
                             <span class="oi oi-pencil"></span>
                         </a>
-                        <button class="btn btn-danger" @onclick="@(()=>Delete(colour.Id))">
+                        <button class="btn btn-danger" @onclick="@(()=>Delete(model.Id))">
                             <span class="oi oi-delete"></span>
                         </button>
                     </td>
@@ -44,20 +44,20 @@ else
 
 
 @code {
-    private List<Colour> Colours;
+    private List<Model> Models;
 
     protected async override Task OnInitializedAsync()
     {
-        Colours = await _client.GetFromJsonAsync<List<Colour>>($"{Endpoints.ColoursEndpoint}");
+        Models = await _client.GetFromJsonAsync<List<Model>>($"{Endpoints.ModelsEndpoint}");
     }
 
-    async Task Delete(int colourId)
+    async Task Delete(int modelId)
     {
-        var colour = Colours.First(q => q.Id == colourId);
-        var confirm = await js.InvokeAsync<bool>("confirm", $"Do you want to delete {colour.Name}?");
+        var model = Models.First(q => q.Id == modelId);
+        var confirm = await js.InvokeAsync<bool>("confirm", $"Do you want to delete {model.Name}?");
         if (confirm)
         {
-            await _client.DeleteAsync($"{Endpoints.ColoursEndpoint}/{colourId}");
+            await _client.DeleteAsync($"{Endpoints.ModelsEndpoint}/{model.Id}");
             await OnInitializedAsync();
         }
 
