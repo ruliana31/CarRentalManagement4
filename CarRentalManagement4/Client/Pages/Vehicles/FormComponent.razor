@@ -1,0 +1,24 @@
+﻿<EditForm Model="@vehicle" OnValidSubmit="@OnValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group">
+        <label>Make: </label>
+        <div>
+            <select @bind="@vehicle.MakeId" class="form-control" />
+            <option value="">-- Select Make --</option>
+            @if (Makes != null)
+            {
+                foreach (var make in Makes)
+                {
+                    <option value="@make.Id">@make.Name</option>
+                }
+            }
+            </select>
+            <ValidationMessage For="@(() => vehicle.MakeId)" />
+        </div>
+    </div>
+
+            
+
+}

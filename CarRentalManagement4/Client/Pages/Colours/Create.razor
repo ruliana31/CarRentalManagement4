@@ -26,6 +26,11 @@
 @code {
     Colour colour = new Colour();
 
+    protected async override Task OnInitializedAsync()
+    {
+
+    }
+
     private async Task CreateColour()
     {
         await _client.PostAsJsonAsync(Endpoints.ColoursEndpoint, colour);
